@@ -7,6 +7,7 @@ define([
 
     // UI
     'modules/ui/video/index',
+    'modules/ui/controls/index',
 
     // Data
     'modules/data/state/index',
@@ -18,6 +19,7 @@ define([
 
     // UI
     Video,
+    Controls,
 
     // Data
     DataState,
@@ -44,7 +46,8 @@ define([
             };
 
             this.definitions.ui = {
-                video: Video
+                video:      Video,
+                controls:   Controls
             };
 
             this.definitions.data = {

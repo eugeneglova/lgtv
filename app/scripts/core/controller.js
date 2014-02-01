@@ -56,6 +56,14 @@ define([
             return this;
         },
 
+        requestCallback: function() {
+            var args = Array.prototype.slice.call(arguments);
+
+            return function() {
+                this.request.apply(this, args);
+            };
+        },
+
         registerListeners: function(events) {
             var event_name, method_name, method;
 

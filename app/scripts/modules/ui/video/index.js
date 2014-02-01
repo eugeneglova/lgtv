@@ -12,6 +12,8 @@ define([
 
         listeners: {
             ':open':                'onOpen',
+            ':play':                'onPlay',
+            ':pause':               'onPause',
             'data:videos:ready':    'onDataVideosReady'
         },
 
@@ -40,6 +42,18 @@ define([
             this.remove();
 
             this.request('data:state:get', 'video-id', this.onDataStateGetVideoId, this);
+
+            return true;
+        },
+
+        onPlay: function() {
+            this.views.video.play();
+
+            return true;
+        },
+
+        onPause: function() {
+            this.views.video.pause();
 
             return true;
         },
@@ -73,7 +87,14 @@ define([
             return true;
         },
 
+        listenToEvents: function() {
+            this.listenTo(this.views.video, 'controls:open', this.requestCallback('ui:controls:open'), this);
+            this.listenTo(this.views.video, 'controls:close', this.requestCallback('ui:controls:close'), this);
+        },
+
         render: function() {
+            this.listenToEvents();
+
             this.views.video.render();
 
             this.el.append(this.views.video.$el);

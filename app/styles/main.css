@@ -2,3 +2,15 @@ body {
     background: #fafafa;
     margin: 0;
 }
+
+.controls {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2em;
+    text-align: center;
+}
+
+.controls button {
+    font-size: 2em;
+}

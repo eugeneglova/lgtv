@@ -17,6 +17,12 @@ define([
 
         views: null,
 
+        mouse_move_timeout_id: null,
+
+        events: {
+            'mousemove':    'onMouseMove'
+        },
+
         initialize: function() {
             this.views = {};
 
@@ -25,6 +31,26 @@ define([
 
         setVideo: function(video) {
             this.video = video;
+
+            return true;
+        },
+
+        play: function() {
+            this.$("#video").get(0).play(1);
+        },
+
+        pause: function() {
+            this.$("#video").get(0).play(0);
+        },
+
+        onMouseMove: function() {
+            this.trigger('controls:open');
+
+            clearTimeout(this.mouse_move_timeout_id);
+
+            this.mouse_move_timeout_id = setTimeout(function() {
+                this.trigger('controls:close');
+            }.bind(this), 5000);
 
             return true;
         },
