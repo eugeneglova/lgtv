@@ -32,6 +32,8 @@ define([
         },
 
         render: function() {
+            this.delegateEvents();
+
             this.$el.html(this.template());
 
             return this;
