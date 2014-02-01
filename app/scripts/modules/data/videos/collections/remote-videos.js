@@ -10,7 +10,7 @@ define([
 
         model: VideoModel,
 
-        url: '/api/v1/videos'
+        url: 'api/v1/videos'
 
     });
 
