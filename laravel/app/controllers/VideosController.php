@@ -10,7 +10,7 @@ class VideosController extends \BaseController {
     public function index()
     {
         //
-        return Response::json([['id' => 1, 'video_url' => 'http://brb.to/get/play/2dbgee4y2zx18_hd.mp4']], 200);
+        return Response::json(array(array('id' => 1, 'video_url' => 'http://brb.to/get/play/2dbgee4y2zx18_hd.mp4')), 200);
 
     }
 
