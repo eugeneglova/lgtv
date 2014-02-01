@@ -35,7 +35,12 @@ require.config({
 });
 
 require([
-    'core/app'
-], function (App) {
+    'core/app',
+    'core/mediator'
+], function (App, mediator) {
     window.app = new App();
+    mediator.on("app:loader:ready", function() {
+        mediator.trigger("data:state:set", "video-id", 1);
+        mediator.trigger("ui:video:open");
+    })
 });

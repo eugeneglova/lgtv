@@ -17,6 +17,12 @@ $environment = strstr($_SERVER['HTTP_HOST'], 'app.') ? 'app' : 'dist';
 // Get file path based on environment
 $index_file = __DIR__ . '/../../' . $environment . '/index.html';
 
+// Route group for API versioning
+Route::group(array('prefix' => 'api/v1'), function()
+{
+    Route::resource('videos', 'VideosController');
+});
+
 // Push state urls support
 Route::get('/', function() use ($index_file)
 {

@@ -1,83 +1,27 @@
 /*global define*/
 
 define([
-    'backbone'//,
+    'backbone',
 
     // Service
-    // 'modules/service/log/index',
-    // 'modules/service/analytics/index',
-    // 'modules/service/contact/index',
-    // 'modules/service/search-log/index',
 
     // UI
-    // 'modules/ui/window/index',
-    // 'modules/ui/user-engines/index',
-    // 'modules/ui/categories/index',
-    // 'modules/ui/search/index',
-    // 'modules/ui/iframe/index',
-    // 'modules/ui/page/index',
-    // 'modules/ui/pages/index',
-    // 'modules/ui/groups/index',
-    // 'modules/ui/routes/index',
-    // 'modules/ui/head/index',
-    // 'modules/ui/addthis/index',
-    // 'modules/ui/engines/index',
-    // 'modules/ui/sites/index',
-    // 'modules/ui/site/index',
-    // 'modules/ui/navbar/index',
-    // 'modules/ui/recent-searches/index',
-    // 'modules/ui/top-searches/index',
+    'modules/ui/video/index',
 
     // Data
-    // 'modules/data/engines/index',
-    // 'modules/data/sites/index',
-    // 'modules/data/user-engines/index',
-    // 'modules/data/categories/index',
-    // 'modules/data/pages/index',
-    // 'modules/data/state/index',
-    // 'modules/data/settings/index',
-    // 'modules/data/groups/index',
-    // 'modules/data/recent-searches/index',
-    // 'modules/data/top-searches/index'
+    'modules/data/state/index',
+    'modules/data/videos/index'
 ], function (
-    Backbone//,
+    Backbone,
 
     // Service
-    // Log,
-    // Analytics,
-    // Contact,
-    // SearchLog,
 
     // UI
-    // Window,
-    // UserEngines,
-    // Categories,
-    // Search,
-    // Iframe,
-    // Page,
-    // Pages,
-    // Groups,
-    // Routes,
-    // Head,
-    // AddThis,
-    // Engines,
-    // Sites,
-    // Site,
-    // Navbar,
-    // RecentSearches,
-    // TopSearches,
+    Video,
 
     // Data
-    // DataEngines,
-    // DataSites,
-    // DataUserEngines,
-    // DataCategories,
-    // DataPages,
-    // DataState,
-    // DataSettings,
-    // DataGroups,
-    // DataRecentSearches,
-    // DataTopSearches
+    DataState,
+    DataVideos
 ) {
     'use strict';
 
@@ -97,43 +41,15 @@ define([
             this.definitions = {};
 
             this.definitions.service = {
-                // log:        Log,
-                // analytics:  Analytics,
-                // contact:    Contact,
-                // search_log: SearchLog
             };
 
             this.definitions.ui = {
-                // window:             Window,
-                // user_engines:       UserEngines,
-                // categories:         Categories,
-                // search:             Search,
-                // iframe:             Iframe,
-                // page:               Page,
-                // navbar:             Navbar,
-                // pages:              Pages,
-                // groups:          Groups,
-                // routes:             Routes,
-                // head:               Head,
-                // addthis:            AddThis,
-                // engines:            Engines,
-                // sites:              Sites,
-                // site:               Site,
-                // recent_searches:    RecentSearches,
-                // top_searches:       TopSearches
+                video: Video
             };
 
             this.definitions.data = {
-                // engines:            DataEngines,
-                // sites:              DataSites,
-                // user_engines:       DataUserEngines,
-                // categories:         DataCategories,
-                // pages:              DataPages,
-                // state:              DataState,
-                // settings:           DataSettings,
-                // groups:             DataGroups,
-                // recent_searches:    DataRecentSearches,
-                // top_searches:       DataTopSearches
+                state:  DataState,
+                videos: DataVideos
             };
 
             this.modules            = {};
