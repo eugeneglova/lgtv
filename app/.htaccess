@@ -431,7 +431,8 @@ FileETag None
 # same name does not exist.
 # webmasterworld.com/apache/3808792.htm
 
-Options -MultiViews
+# Option MultiViews not allowed on hosting
+# Options -MultiViews
 
 
 # ----------------------------------------------------------------------
@@ -554,7 +555,8 @@ AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
 
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
-        Options -MultiViews
+        # Option MultiViews not allowed on hosting
+        # Options -MultiViews
     </IfModule>
 
     RewriteEngine On
