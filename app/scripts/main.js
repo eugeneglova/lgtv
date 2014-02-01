@@ -6,7 +6,7 @@ require.config({
         underscore: {
             exports: '_'
         },
-        backbone: {
+        'backbone-original': {
             deps: [
                 'underscore',
                 'jquery'
@@ -14,15 +14,28 @@ require.config({
             exports: 'Backbone'
         }
     },
+    // hbs plugin settings, listing here just as a reference
+    hbs : {
+        // if disableI18n is `true` it won't load locales and the i18n helper
+        // won't work as well.
+        disableI18n : true
+    },
     paths: {
-        jquery: '../bower_components/jquery/jquery',
-        backbone: '../bower_components/backbone/backbone',
-        underscore: '../bower_components/underscore/underscore'
-    }
+        jquery:                 '../bower_components/jquery/jquery',
+        'backbone-original':    '../bower_components/backbone/backbone',
+        backbone:               'core/backbone',
+        underscore:             '../bower_components/underscore/underscore',
+        // require-handlebars-plugin setup
+        'handlebars':           '../bower_components/require-handlebars-plugin/Handlebars',
+        'hbs':                  '../bower_components/require-handlebars-plugin/hbs',
+        'i18nprecompile':       '../bower_components/require-handlebars-plugin/hbs/i18nprecompile',
+        'json2':                '../bower_components/require-handlebars-plugin/hbs/json2'
+    },
+    urlArgs: 'bust=' +  (new Date()).getTime()
 });
 
 require([
-    'backbone'
-], function (Backbone) {
-    Backbone.history.start();
+    'core/app'
+], function (App) {
+    window.app = new App();
 });
