@@ -246,6 +246,7 @@ module.exports = function (grunt) {
                     src: [
                         '*.{ico,txt}',
                         '.htaccess',
+                        'index.php',
                         'images/{,*/}*.{webp,gif}',
                         'styles/fonts/{,*/}*.*',
                     ]
@@ -329,7 +330,7 @@ module.exports = function (grunt) {
                 'mocha',
                 'watch:test'
             ];
-            
+
         if(!isConnected) {
             return grunt.task.run(testTasks);
         } else {
