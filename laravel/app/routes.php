@@ -12,7 +12,7 @@
 */
 
 // Get environment name
-$environment = !strstr($_SERVER['HTTP_HOST'], 'app.') ? 'dist' : 'app';
+$environment = strstr($_SERVER['HTTP_HOST'], 'app.') || strstr($_SERVER['REQUEST_URI'], '/app/') ? 'app' : 'dist';
 
 // Get file path based on environment
 $index_file = __DIR__ . '/../../' . $environment . '/index.html';
