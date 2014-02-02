@@ -36,7 +36,7 @@ define([
         rewind: function() {
             var video = this.$("#video").get(0);
 
-            video.seek(video.playTime - 60000);
+            video.seek(video.playPosition - 60000);
         },
 
         play: function() {
@@ -50,7 +50,7 @@ define([
         forward: function() {
             var video = this.$("#video").get(0);
 
-            video.seek(video.playTime + 60000);
+            video.seek(video.playPosition + 60000);
         },
 
         openControls: function() {
