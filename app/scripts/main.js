@@ -25,6 +25,7 @@ require.config({
         'backbone-original':    '../bower_components/backbone/backbone',
         backbone:               'core/backbone',
         underscore:             '../bower_components/underscore/underscore',
+        moment:                 '../bower_components/momentjs/moment',
         // require-handlebars-plugin setup
         'handlebars':           '../bower_components/require-handlebars-plugin/Handlebars',
         'hbs':                  '../bower_components/require-handlebars-plugin/hbs',

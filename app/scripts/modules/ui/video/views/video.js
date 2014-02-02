@@ -54,10 +54,27 @@ define([
         },
 
         openControls: function() {
-            var video = this.$("#video").get(0),
-                media_play_info = video.mediaPlayInfo();
+            var video = this.$("#video").get(0);
 
-            this.trigger('controls:open', media_play_info);
+            this.trigger('controls:open', {
+                version:            version,
+                type:               type,
+                data:               data,
+                width:              width,
+                height:             height,
+                playTime:           playTime,
+                playPosition:       playPosition,
+                playState:          playState,
+                error:              error,
+                autoStart:          autoStart,
+                isScannable:        isScannable,
+                speed:              speed,
+                bufferingProgress:  bufferingProgress,
+                subtitleOn:         subtitleOn,
+                subtitle:           subtitle,
+                mode3D:             mode3D,
+                audioLanguage:      audioLanguage
+            });
 
             this.mouse_move_timeout_id = setTimeout(function() {
                 this.trigger('controls:close');

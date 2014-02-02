@@ -21,7 +21,7 @@ define([
 
         is_rendered: null,
 
-        media_play_info: null,
+        video_info: null,
 
         initialize: function() {
             this.el = $('body');
@@ -37,10 +37,10 @@ define([
             return !!this.is_rendered;
         },
 
-        onOpen: function(media_play_info) {
-            this.media_play_info = media_play_info;
+        onOpen: function(video_info) {
+            this.video_info = video_info;
 
-            this.views.controls.setMediaPlayInfo(this.media_play_info);
+            this.views.controls.setVideoInfo(this.video_info);
 
             this.render();
 

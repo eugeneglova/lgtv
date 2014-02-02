@@ -4,8 +4,9 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'moment',
     'hbs!../templates/controls',
-], function ($, _, Backbone, ControlsTemplate) {
+], function ($, _, Backbone, moment, ControlsTemplate) {
     'use strict';
 
     var ControlsView = Backbone.View.extend({
@@ -14,7 +15,7 @@ define([
 
         template: ControlsTemplate,
 
-        media_play_info: null,
+        video_info: null,
 
         events: {
             'click .rewind':    'onRewind',
@@ -23,8 +24,8 @@ define([
             'click .forward':   'onForward'
         },
 
-        setMediaPlayInfo: function(media_play_info) {
-            this.media_play_info = media_play_info;
+        setVideoInfo: function(video_info) {
+            this.video_info = video_info;
         },
 
         onRewind: function() {
@@ -54,7 +55,10 @@ define([
         render: function() {
             this.delegateEvents();
 
-            this.$el.html(this.template(this.media_play_info));
+            this.$el.html(this.template(_.extend({}, this.video_info, {
+                position: moment.utc(this.video_info.playPosition).format('HH:mm:ss'),
+                duration: moment.utc(this.video_info.playTime).format('HH:mm:ss')
+            }));
 
             return this;
         }
