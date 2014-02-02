@@ -14,11 +14,17 @@ define([
 
         template: ControlsTemplate,
 
+        media_play_info: null,
+
         events: {
             'click .rewind':    'onRewind',
             'click .play':      'onPlay',
             'click .pause':     'onPause',
             'click .forward':   'onForward'
+        },
+
+        setMediaPlayInfo: function(media_play_info) {
+            this.media_play_info = media_play_info;
         },
 
         onRewind: function() {
@@ -48,7 +54,7 @@ define([
         render: function() {
             this.delegateEvents();
 
-            this.$el.html(this.template());
+            this.$el.html(this.template(this.media_play_info));
 
             return this;
         }

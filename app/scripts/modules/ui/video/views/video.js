@@ -15,8 +15,6 @@ define([
         // Reference to the video model
         video: null,
 
-        views: null,
-
         mouse_move_timeout_id: null,
 
         events: {
@@ -24,7 +22,8 @@ define([
         },
 
         initialize: function() {
-            this.views = {};
+
+            this.openControls = _.throttle(this.openControls, 1000);
 
             return this;
         },
@@ -36,9 +35,7 @@ define([
         },
 
         rewind: function() {
-            var video = this.$("#video").get(0),
-                info = video.mediaPlayInfo();
-            video.seek(info.playTime - 60000);
+            video.seek(this.$("#video").get(0).playTime - 60000);
         },
 
         play: function() {
@@ -50,15 +47,14 @@ define([
         },
 
         forward: function() {
-            var video = this.$("#video").get(0),
-                info = video.mediaPlayInfo();
-            video.seek(info.playTime + 60000);
+            video.seek(this.$("#video").get(0).playTime + 60000);
         },
 
-        onMouseMove: function() {
-            this.trigger('controls:open');
+        openControls: function() {
+            var video = this.$("#video").get(0),
+                media_play_info = video.mediaPlayInfo();
 
-            clearTimeout(this.mouse_move_timeout_id);
+            this.trigger('controls:open', media_play_info);
 
             this.mouse_move_timeout_id = setTimeout(function() {
                 this.trigger('controls:close');
@@ -67,21 +63,18 @@ define([
             return true;
         },
 
+        onMouseMove: function() {
+            clearTimeout(this.mouse_move_timeout_id);
+
+            this.openControls();
+
+            return true;
+        },
+
         render: function() {
             this.$el.html(this.template(this.video.toJSON()));
 
             return this;
-        },
-
-        remove: function() {
-            Object.keys(this.views).forEach(function(key) {
-                this.views[key].remove();
-                delete this.views[key];
-            }, this);
-
-            Backbone.View.prototype.remove.apply(this, arguments);
-
-            return true;
         }
 
     });

@@ -60,7 +60,7 @@ define([
             var args = Array.prototype.slice.call(arguments);
 
             return function() {
-                this.request.apply(this, args);
+                this.request.apply(this, args.concat(Array.prototype.slice.call(arguments)));
             };
         },
 
