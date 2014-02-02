@@ -15,8 +15,16 @@ define([
         template: ControlsTemplate,
 
         events: {
-            'click .play':  'onPlay',
-            'click .pause': 'onPause'
+            'click .rewind':    'onRewind',
+            'click .play':      'onPlay',
+            'click .pause':     'onPause',
+            'click .forward':   'onForward'
+        },
+
+        onRewind: function() {
+            this.trigger('rewind');
+
+            return true;
         },
 
         onPlay: function() {
@@ -27,6 +35,12 @@ define([
 
         onPause: function() {
             this.trigger('pause');
+
+            return true;
+        },
+
+        onForward: function() {
+            this.trigger('forward');
 
             return true;
         },

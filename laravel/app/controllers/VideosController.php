@@ -13,6 +13,7 @@ class VideosController extends \BaseController {
         return Response::json(array(
             array('id' => 1, 'video_url' => 'http://brb.to/get/play/2dbgee4y2zx18_hd.mp4'),
             array('id' => 2, 'video_url' => 'http://brb.to/get/play/2dbgefx2l5m0c_hd.mp4'),
+            array('id' => 3, 'video_url' => 'http://brb.to/get/play/2dbgemwrjcmfw_hd.mp4'),
         ), 200);
 
     }

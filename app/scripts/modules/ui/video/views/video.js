@@ -35,12 +35,24 @@ define([
             return true;
         },
 
+        rewind: function() {
+            var video = this.$("#video").get(0),
+                info = video.mediaPlayInfo();
+            video.seek(info.playTime - 60000);
+        },
+
         play: function() {
             this.$("#video").get(0).play(1);
         },
 
         pause: function() {
             this.$("#video").get(0).play(0);
+        },
+
+        forward: function() {
+            var video = this.$("#video").get(0),
+                info = video.mediaPlayInfo();
+            video.seek(info.playTime + 60000);
         },
 
         onMouseMove: function() {

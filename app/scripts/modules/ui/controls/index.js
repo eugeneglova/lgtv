@@ -36,8 +36,10 @@ define([
         },
 
         listenToEvents: function() {
+            this.listenTo(this.views.controls, 'rewind', this.requestCallback('ui:video:rewind'), this);
             this.listenTo(this.views.controls, 'play', this.requestCallback('ui:video:play'), this);
             this.listenTo(this.views.controls, 'pause', this.requestCallback('ui:video:pause'), this);
+            this.listenTo(this.views.controls, 'forward', this.requestCallback('ui:video:forward'), this);
         },
 
         render: function() {

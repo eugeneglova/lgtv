@@ -12,8 +12,10 @@ define([
 
         listeners: {
             ':open':                'onOpen',
+            ':rewind':              'onRewind',
             ':play':                'onPlay',
             ':pause':               'onPause',
+            ':forward':             'onForward',
             'data:videos:ready':    'onDataVideosReady'
         },
 
@@ -46,6 +48,12 @@ define([
             return true;
         },
 
+        onRewind: function() {
+            this.views.video.rewind();
+
+            return true;
+        },
+
         onPlay: function() {
             this.views.video.play();
 
@@ -54,6 +62,12 @@ define([
 
         onPause: function() {
             this.views.video.pause();
+
+            return true;
+        },
+
+        onForward: function() {
+            this.views.video.forward();
 
             return true;
         },
