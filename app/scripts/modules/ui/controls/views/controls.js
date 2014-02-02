@@ -58,7 +58,7 @@ define([
             this.$el.html(this.template(_.extend({}, this.video_info, {
                 position: moment.utc(this.video_info.playPosition).format('HH:mm:ss'),
                 duration: moment.utc(this.video_info.playTime).format('HH:mm:ss')
-            }));
+            })));
 
             return this;
         }

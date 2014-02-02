@@ -57,23 +57,23 @@ define([
             var video = this.$("#video").get(0);
 
             this.trigger('controls:open', {
-                version:            version,
-                type:               type,
-                data:               data,
-                width:              width,
-                height:             height,
-                playTime:           playTime,
-                playPosition:       playPosition,
-                playState:          playState,
-                error:              error,
-                autoStart:          autoStart,
-                isScannable:        isScannable,
-                speed:              speed,
-                bufferingProgress:  bufferingProgress,
-                subtitleOn:         subtitleOn,
-                subtitle:           subtitle,
-                mode3D:             mode3D,
-                audioLanguage:      audioLanguage
+                version:            video.version,
+                type:               video.type,
+                data:               video.data,
+                width:              video.width,
+                height:             video.height,
+                playTime:           video.playTime,
+                playPosition:       video.playPosition,
+                playState:          video.playState,
+                error:              video.error,
+                autoStart:          video.autoStart,
+                isScannable:        video.isScannable,
+                speed:              video.speed,
+                bufferingProgress:  video.bufferingProgress,
+                subtitleOn:         video.subtitleOn,
+                subtitle:           video.subtitle,
+                mode3D:             video.mode3D,
+                audioLanguage:      video.audioLanguage
             });
 
             this.mouse_move_timeout_id = setTimeout(function() {
