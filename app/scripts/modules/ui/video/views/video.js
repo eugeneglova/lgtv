@@ -22,7 +22,6 @@ define([
         },
 
         initialize: function() {
-
             this.openControls = _.throttle(this.openControls, 1000);
 
             return this;
@@ -35,7 +34,9 @@ define([
         },
 
         rewind: function() {
-            video.seek(this.$("#video").get(0).playTime - 60000);
+            var video = this.$("#video").get(0);
+
+            video.seek(video.playTime - 60000);
         },
 
         play: function() {
@@ -47,7 +48,9 @@ define([
         },
 
         forward: function() {
-            video.seek(this.$("#video").get(0).playTime + 60000);
+            var video = this.$("#video").get(0);
+
+            video.seek(video.playTime + 60000);
         },
 
         openControls: function() {
