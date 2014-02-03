@@ -15,14 +15,14 @@ define([
         // Reference to the video model
         video: null,
 
-        mouse_move_timeout_id: null,
+        interval: null,
 
         events: {
             'mousemove':    'onMouseMove'
         },
 
         initialize: function() {
-            this.openControls = _.throttle(this.openControls, 1000);
+            this.openControls = _.throttle(this.openControls, 500);
 
             return this;
         },
@@ -34,61 +34,39 @@ define([
         },
 
         rewind: function() {
-            var video = this.$("#video").get(0);
+            var video = this.getVideoElement();
 
             video.seek(video.playPosition - 60000);
         },
 
         play: function() {
-            this.$("#video").get(0).play(1);
+            this.getVideoElement().play(1);
         },
 
         pause: function() {
-            this.$("#video").get(0).play(0);
+            this.getVideoElement().play(0);
         },
 
         forward: function() {
-            var video = this.$("#video").get(0);
+            var video = this.getVideoElement();
 
             video.seek(video.playPosition + 60000);
         },
 
         openControls: function() {
-            var video = this.$("#video").get(0);
-
-            this.trigger('controls:open', {
-                version:            video.version,
-                type:               video.type,
-                data:               video.data,
-                width:              video.width,
-                height:             video.height,
-                playTime:           video.playTime,
-                playPosition:       video.playPosition,
-                playState:          video.playState,
-                error:              video.error,
-                autoStart:          video.autoStart,
-                isScannable:        video.isScannable,
-                speed:              video.speed,
-                bufferingProgress:  video.bufferingProgress,
-                subtitleOn:         video.subtitleOn,
-                subtitle:           video.subtitle,
-                mode3D:             video.mode3D,
-                audioLanguage:      video.audioLanguage
-            });
-
-            this.mouse_move_timeout_id = setTimeout(function() {
-                this.trigger('controls:close');
-            }.bind(this), 5000);
+            this.trigger('controls:open');
 
             return true;
         },
 
         onMouseMove: function() {
-            clearTimeout(this.mouse_move_timeout_id);
-
             this.openControls();
 
             return true;
+        },
+
+        getVideoElement: function() {
+            return this.$("#video").get(0);
         },
 
         render: function() {

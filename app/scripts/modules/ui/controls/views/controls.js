@@ -4,9 +4,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'moment',
     'hbs!../templates/controls',
-], function ($, _, Backbone, moment, ControlsTemplate) {
+], function ($, _, Backbone, ControlsTemplate) {
     'use strict';
 
     var ControlsView = Backbone.View.extend({
@@ -15,17 +14,24 @@ define([
 
         template: ControlsTemplate,
 
-        video_info: null,
+        video: null,
 
         events: {
             'click .rewind':    'onRewind',
             'click .play':      'onPlay',
             'click .pause':     'onPause',
-            'click .forward':   'onForward'
+            'click .forward':   'onForward',
+            'mousemove':        'onMouseMove'
         },
 
-        setVideoInfo: function(video_info) {
-            this.video_info = video_info;
+        initialize: function() {
+            this.onMouseMove = _.throttle(this.onMouseMove, 500);
+
+            return this;
+        },
+
+        setVideoElement: function(video) {
+            this.video = video;
         },
 
         onRewind: function() {
@@ -52,13 +58,35 @@ define([
             return true;
         },
 
+        onMouseMove: function() {
+            this.trigger('clear-timeout');
+
+            return true;
+        },
+
+        getDurationByMilliseconds: function (milliseconds) {
+            var hours, minutes, seconds;
+
+            hours = Math.floor(milliseconds / 1000 / 3600);
+            minutes = Math.floor(milliseconds / 1000 % 3600 / 60);
+            seconds = Math.floor(milliseconds / 1000 % 3600 % 60);
+
+            hours = hours > 0 ? hours + ':' : '';
+            minutes = minutes > 0 ? (hours !== '' && minutes < 10 ? '0' : '') + minutes + ':' : '0:';
+            seconds = (seconds < 10 ? "0" : "") + seconds;
+
+            return hours + minutes + seconds;
+        },
+
         render: function() {
+            var format = this.video.playTime < 60 * 60 * 1000 ? 'mm:ss' : 'H:mm:ss';
+
             this.delegateEvents();
 
-            this.$el.html(this.template(_.extend({}, this.video_info, {
-                position: moment.utc(this.video_info.playPosition).format('HH:mm:ss'),
-                duration: moment.utc(this.video_info.playTime).format('HH:mm:ss')
-            })));
+            this.$el.html(this.template({
+                position: this.getDurationByMilliseconds(this.video.playPosition),
+                duration: this.getDurationByMilliseconds(this.video.playTime)
+            }));
 
             return this;
         }

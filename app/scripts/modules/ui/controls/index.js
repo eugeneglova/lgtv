@@ -11,8 +11,9 @@ define([
         namespace: 'ui:controls',
 
         listeners: {
-            ':open':    'onOpen',
-            ':close':   'remove'
+            ':open':                            'render',
+            ':close':                           'remove',
+            'data:state:changed:video-element': 'onVideoElementChanged'
         },
 
         el: null,
@@ -21,7 +22,7 @@ define([
 
         is_rendered: null,
 
-        video_info: null,
+        timeout_id: null,
 
         initialize: function() {
             this.el = $('body');
@@ -37,14 +38,8 @@ define([
             return !!this.is_rendered;
         },
 
-        onOpen: function(video_info) {
-            this.video_info = video_info;
-
-            this.views.controls.setVideoInfo(this.video_info);
-
-            this.render();
-
-            return true;
+        onVideoElementChanged: function(video) {
+            this.request('data:state:get', 'video-element', this.views.controls.setVideoElement.bind(this.views.controls));
         },
 
         listenToEvents: function() {
@@ -52,6 +47,7 @@ define([
             this.listenTo(this.views.controls, 'play', this.requestCallback('ui:video:play'), this);
             this.listenTo(this.views.controls, 'pause', this.requestCallback('ui:video:pause'), this);
             this.listenTo(this.views.controls, 'forward', this.requestCallback('ui:video:forward'), this);
+            this.listenTo(this.views.controls, 'clear-timeout', this.clearTimeout, this);
         },
 
         render: function() {
@@ -65,7 +61,19 @@ define([
 
             this.is_rendered = true;
 
+            this.clearTimeout();
+
             return this;
+        },
+
+        clearTimeout: function() {
+            clearTimeout(this.timeout_id);
+
+            this.timeout_id = setTimeout(function() {
+                this.remove();
+            }.bind(this), 5000);
+
+            return true;
         },
 
         remove: function() {

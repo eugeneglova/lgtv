@@ -7,7 +7,8 @@ define([
 
     var StateModel = Backbone.Model.extend({
         defaults: {
-            'video-id': null
+            'video-id':         null,
+            'video-element':    null
         }
     });
 

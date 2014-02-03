@@ -103,7 +103,6 @@ define([
 
         listenToEvents: function() {
             this.listenTo(this.views.video, 'controls:open', this.requestCallback('ui:controls:open'), this);
-            this.listenTo(this.views.video, 'controls:close', this.requestCallback('ui:controls:close'), this);
         },
 
         render: function() {
@@ -113,6 +112,8 @@ define([
 
             this.el.append(this.views.video.$el);
 
+            this.request('data:state:set', 'video-element', this.views.video.getVideoElement());
+
             this.is_rendered = true;
 
             return this;
@@ -120,6 +121,8 @@ define([
 
         remove: function() {
             if (!this.isRendered()) return false;
+
+            this.request('data:state:set', 'video-element', null);
 
             Object.keys(this.views).forEach(function(key) {
                 this.views[key].remove();
