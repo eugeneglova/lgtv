@@ -13,7 +13,7 @@ define([
         listeners: {
             ':open':                            'render',
             ':close':                           'remove',
-            'data:state:changed:video-element': 'onVideoElementChanged'
+            'data:state:changed:player-element': 'onPlayerElementChanged'
         },
 
         el: null,
@@ -38,8 +38,8 @@ define([
             return !!this.is_rendered;
         },
 
-        onVideoElementChanged: function(video) {
-            this.request('data:state:get', 'video-element', this.views.controls.setVideoElement.bind(this.views.controls));
+        onPlayerElementChanged: function(player) {
+            this.request('data:state:get', 'player-element', this.views.controls.setPlayerElement.bind(this.views.controls));
         },
 
         listenToEvents: function() {

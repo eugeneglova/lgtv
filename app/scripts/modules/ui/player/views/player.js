@@ -4,13 +4,13 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'hbs!../templates/video',
-], function ($, _, Backbone, VideoTemplate) {
+    'hbs!../templates/player',
+], function ($, _, Backbone, PlayerTemplate) {
     'use strict';
 
-    var VideoView = Backbone.View.extend({
+    var PlayerView = Backbone.View.extend({
 
-        template: VideoTemplate,
+        template: PlayerTemplate,
 
         // Reference to the video model
         video: null,
@@ -34,23 +34,23 @@ define([
         },
 
         rewind: function() {
-            var video = this.getVideoElement();
+            var player = this.getPlayerElement();
 
-            video.seek(video.playPosition - 60000);
+            player.seek(player.playPosition - 60000);
         },
 
         play: function() {
-            this.getVideoElement().play(1);
+            this.getPlayerElement().play(1);
         },
 
         pause: function() {
-            this.getVideoElement().play(0);
+            this.getPlayerElement().play(0);
         },
 
         forward: function() {
-            var video = this.getVideoElement();
+            var player = this.getPlayerElement();
 
-            video.seek(video.playPosition + 60000);
+            player.seek(player.playPosition + 60000);
         },
 
         openControls: function() {
@@ -65,8 +65,8 @@ define([
             return true;
         },
 
-        getVideoElement: function() {
-            return this.$("#video").get(0);
+        getPlayerElement: function() {
+            return this.$("#player").get(0);
         },
 
         render: function() {
@@ -77,5 +77,5 @@ define([
 
     });
 
-    return VideoView;
+    return PlayerView;
 });

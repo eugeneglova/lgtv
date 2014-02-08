@@ -2,13 +2,13 @@
 
 define([
     'backbone',
-    './views/video'
-], function (Backbone, VideoView) {
+    './views/player'
+], function (Backbone, PlayerView) {
     'use strict';
 
-    var Video = Backbone.UIController.extend({
+    var Player = Backbone.UIController.extend({
 
-        namespace: 'ui:video',
+        namespace: 'ui:player',
 
         listeners: {
             ':open':                'onOpen',
@@ -35,7 +35,7 @@ define([
 
             this.views = {};
 
-            this.views.video = new VideoView();
+            this.views.player = new PlayerView();
 
             return this;
         },
@@ -49,25 +49,25 @@ define([
         },
 
         onRewind: function() {
-            this.views.video.rewind();
+            this.views.player.rewind();
 
             return true;
         },
 
         onPlay: function() {
-            this.views.video.play();
+            this.views.player.play();
 
             return true;
         },
 
         onPause: function() {
-            this.views.video.pause();
+            this.views.player.pause();
 
             return true;
         },
 
         onForward: function() {
-            this.views.video.forward();
+            this.views.player.forward();
 
             return true;
         },
@@ -93,26 +93,26 @@ define([
 
             if (!this.video) return false;
 
-            this.views.video.setVideo(this.video);
+            this.views.player.setVideo(this.video);
 
-            // this.video.fetch().then(this.render.bind(this));
+            // this.player.fetch().then(this.render.bind(this));
             this.render();
 
             return true;
         },
 
         listenToEvents: function() {
-            this.listenTo(this.views.video, 'controls:open', this.requestCallback('ui:controls:open'), this);
+            this.listenTo(this.views.player, 'controls:open', this.requestCallback('ui:controls:open'), this);
         },
 
         render: function() {
             this.listenToEvents();
 
-            this.views.video.render();
+            this.views.player.render();
 
-            this.el.append(this.views.video.$el);
+            this.el.append(this.views.player.$el);
 
-            this.request('data:state:set', 'video-element', this.views.video.getVideoElement());
+            this.request('data:state:set', 'player-element', this.views.player.getPlayerElement());
 
             this.is_rendered = true;
 
@@ -122,7 +122,7 @@ define([
         remove: function() {
             if (!this.isRendered()) return false;
 
-            this.request('data:state:set', 'video-element', null);
+            this.request('data:state:set', 'player-element', null);
 
             Object.keys(this.views).forEach(function(key) {
                 this.views[key].remove();
@@ -135,5 +135,5 @@ define([
 
     });
 
-    return Video;
+    return Player;
 });

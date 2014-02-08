@@ -41,6 +41,6 @@ require([
     window.app = new App();
     mediator.on("app:loader:ready", function() {
         mediator.trigger("data:state:set", "video-id", 3);
-        mediator.trigger("ui:video:open");
+        mediator.trigger("ui:player:open");
     })
 });

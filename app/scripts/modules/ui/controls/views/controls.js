@@ -14,7 +14,7 @@ define([
 
         template: ControlsTemplate,
 
-        video: null,
+        player: null,
 
         events: {
             'click .rewind':    'onRewind',
@@ -30,8 +30,8 @@ define([
             return this;
         },
 
-        setVideoElement: function(video) {
-            this.video = video;
+        setPlayerElement: function(player) {
+            this.player = player;
         },
 
         onRewind: function() {
@@ -79,13 +79,13 @@ define([
         },
 
         render: function() {
-            var format = this.video.playTime < 60 * 60 * 1000 ? 'mm:ss' : 'H:mm:ss';
+            var format = this.player.playTime < 60 * 60 * 1000 ? 'mm:ss' : 'H:mm:ss';
 
             this.delegateEvents();
 
             this.$el.html(this.template({
-                position: this.getDurationByMilliseconds(this.video.playPosition),
-                duration: this.getDurationByMilliseconds(this.video.playTime)
+                position: this.getDurationByMilliseconds(this.player.playPosition),
+                duration: this.getDurationByMilliseconds(this.player.playTime)
             }));
 
             return this;
