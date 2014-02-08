@@ -39,8 +39,8 @@ require([
     'core/mediator'
 ], function (App, mediator) {
     window.app = new App();
-    mediator.on("app:loader:ready", function() {
-        mediator.trigger("data:state:set", "video-id", 3);
-        mediator.trigger("ui:player:open");
+    mediator.on('app:loader:ready', function() {
+        mediator.trigger('data:state:set', 'video-id', 'i109uoOHk3tDAFgJNvjxx6');
+        mediator.trigger('ui:video:open');
     })
 });

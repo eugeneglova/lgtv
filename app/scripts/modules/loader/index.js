@@ -6,6 +6,7 @@ define([
     // Service
 
     // UI
+    'modules/ui/video/index',
     'modules/ui/player/index',
     'modules/ui/controls/index',
 
@@ -18,6 +19,7 @@ define([
     // Service
 
     // UI
+    Video,
     Player,
     Controls,
 
@@ -46,6 +48,7 @@ define([
             };
 
             this.definitions.ui = {
+                video:      Video,
                 player:     Player,
                 controls:   Controls
             };

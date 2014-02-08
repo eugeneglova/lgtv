@@ -1,0 +1,38 @@
+<div>
+    <img src="{{ cover_image }}" />
+    {{ title }} ({{ original_title }}) {{ year }}
+    <div>
+        {{ description }}
+    </div>
+</div>
+
+<div>
+    <div>
+        genre:
+    </div>
+
+    <div>
+        {{#genre}}
+            <span>{{ this }}</span>
+        {{/genre}}
+    </div>
+</div>
+
+<div>
+coutry:
+{{#coutry}}
+    {{ this }}
+{{/coutry}}
+</div>
+
+<div>
+director:
+{{ director }}
+</div>
+
+<div>
+actors
+{{#actors}}
+    {{ this }}
+{{/actors}}
+</div>

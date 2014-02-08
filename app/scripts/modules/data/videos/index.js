@@ -10,7 +10,19 @@ define([
 
         namespace: 'data:videos',
 
-        remote_collection_constructor: RemoteVideos
+        listeners: _.extend({}, DataRemoteCollection.prototype.listeners, {
+            ':getVideoById': 'onGetVideoById'
+        }),
+
+        remote_collection_constructor: RemoteVideos,
+
+        onGetVideoById: function(video_id, callback, context) {
+            var video = this.collections.remote.get(video_id);
+
+            callback.call(context, video);
+
+            return true;
+        }
 
     });
 
