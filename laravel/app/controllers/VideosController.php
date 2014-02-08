@@ -21,11 +21,11 @@ class VideosController extends \BaseController {
                 'description' => 'Моряк Эй Джи Бад просыпается в незнакомом доме, из которого нельзя выйти. Каждый день в одно и то же время появляется чудовище, которое пытается его убить. Не в силах найти объяснения происходящему, Бад обыскивает дом и находит дневник бывшего узника этой страшной тюрьмы',
                 'genre' => array('ужасы', 'триллер'),
                 'year' => '2013',
-                'coutry' => array('Великобритания'),
+                'country' => array('Великобритания'),
                 'director' => array('Люк Мэсси'),
-                'actors' => array('Джозеф Морган', 'Мэтт Райан', 'Аль Уивер'),
-                'cover_image' => 'http://s3.dotua.org/fsua_items/cover/00/28/00/2/00280087.jpg',
-                'video_url' => 'http://brb.to/get/play/2dbgemwrjcmfw_hd.mp4'
+                'actors' => array('Джозеф Морган', 'Мэтт Райан', 'Уильям Тротон', 'Аль Уивер'),
+                'cover_image' => 'http://s3.dotua.org/fsua_items/cover/00/28/00/10/00280087.jpg',
+                'video_url' => 'http://brb.to/get/play/2dbgxbinfw4xo_hd.mp4'
             ),
         ), 200);
 

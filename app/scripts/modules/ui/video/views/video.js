@@ -12,6 +12,8 @@ define([
 
         template: VideoTemplate,
 
+        className: 'video',
+
         // Reference to the video model
         video: null,
 

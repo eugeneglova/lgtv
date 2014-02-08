@@ -1,38 +1,40 @@
-<div>
-    <img src="{{ cover_image }}" />
-    {{ title }} ({{ original_title }}) {{ year }}
-    <div>
-        {{ description }}
-    </div>
-</div>
+<img src="{{ cover_image }}" />
 
-<div>
-    <div>
-        genre:
-    </div>
+<h1>{{ title }}</h1>
 
-    <div>
+<h2>{{ original_title }}</h2>
+
+<dl>
+    <dt>Жанр:</dt>
+    <dd>
         {{#genre}}
             <span>{{ this }}</span>
         {{/genre}}
-    </div>
-</div>
+    </dd>
+
+    <dt>Год:</dt>
+    <dd>
+        <span>{{ year }}</span>
+    </dd>
+
+    <dt>Страна:</dt>
+    <dd>
+        <span>{{ country }}</span>
+    </dd>
+
+    <dt>Режиссер:</dt>
+    <dd>
+        <span>{{ director }}</span>
+    </dd>
+
+    <dt>В ролях:</dt>
+    <dd>
+        {{#actors}}
+            <span>{{ this }}</span>
+        {{/actors}}
+    </dd>
+</dl>
 
 <div>
-coutry:
-{{#coutry}}
-    {{ this }}
-{{/coutry}}
-</div>
-
-<div>
-director:
-{{ director }}
-</div>
-
-<div>
-actors
-{{#actors}}
-    {{ this }}
-{{/actors}}
+    {{ description }}
 </div>

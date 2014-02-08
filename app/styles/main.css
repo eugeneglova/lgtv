@@ -1,6 +1,8 @@
 body {
-    background: #fafafa;
+    background: #000 url(http://wallpaper.pickywallpapers.com/1280x720/highlighted-grey-background.jpg);
     margin: 0;
+    color: #ddd;
+    font-size: 1.5em;
 }
 
 .controls {
@@ -13,4 +15,28 @@ body {
 
 .controls button {
     font-size: 2em;
+}
+
+.video {
+    padding: .2em .5em;
+}
+
+.video h1 {
+    color: #fff;
+}
+
+.video img {
+    float: left;
+    margin-right: 1em;
+}
+
+.video dl dt {
+    float: left;
+    width: 6em;
+}
+
+.video dl dd span {
+    background: #333;
+    padding: .1em .3em;
+    border-radius: .3em;
 }
