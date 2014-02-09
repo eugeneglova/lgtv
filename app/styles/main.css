@@ -12,10 +12,14 @@ body {
 
 .videos li {
     display: inline-block;
-    width: 14%;
+    width: 14.285714%;
     vertical-align: top;
     text-align: center;
     font-size: .9em;
+}
+
+.videos li a {
+    color: #fff;
 }
 
 .videos li small {
