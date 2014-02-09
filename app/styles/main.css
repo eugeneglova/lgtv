@@ -5,6 +5,45 @@ body {
     font-size: 1.5em;
 }
 
+.videos {
+    padding: 0;
+}
+
+.videos li {
+    display: inline-block;
+    width: 20%;
+    vertical-align: top;
+    text-align: center;
+}
+
+.videos li .hidden {
+    display: none;
+}
+
+div.video {
+    padding: .2em .5em;
+}
+
+div.video h1 {
+    color: #fff;
+}
+
+div.video img {
+    float: left;
+    margin-right: 1em;
+}
+
+div.video dl dt {
+    float: left;
+    width: 6em;
+}
+
+div.video dl dd span {
+    background: #333;
+    padding: .1em .3em;
+    border-radius: .3em;
+}
+
 .controls {
     position: absolute;
     left: 0;
@@ -15,28 +54,4 @@ body {
 
 .controls button {
     font-size: 2em;
-}
-
-.video {
-    padding: .2em .5em;
-}
-
-.video h1 {
-    color: #fff;
-}
-
-.video img {
-    float: left;
-    margin-right: 1em;
-}
-
-.video dl dt {
-    float: left;
-    width: 6em;
-}
-
-.video dl dd span {
-    background: #333;
-    padding: .1em .3em;
-    border-radius: .3em;
 }
