@@ -21,6 +21,7 @@ $index_file = __DIR__ . '/../../' . $environment . '/index.html';
 Route::group(array('prefix' => 'api/v1'), function()
 {
     Route::resource('videos', 'VideosController');
+    Route::resource('videos.url', 'VideosController');
 });
 
 // Push state urls support
