@@ -88,6 +88,8 @@ define([
 
         listenToEvents: function() {
             this.listenTo(this.views.player, 'controls:open', this.requestCallback('ui:controls:open'), this);
+
+            return true;
         },
 
         render: function() {

@@ -6,18 +6,20 @@ body {
 }
 
 .videos {
+    margin: 0;
     padding: 0;
 }
 
 .videos li {
     display: inline-block;
-    width: 20%;
+    width: 14%;
     vertical-align: top;
     text-align: center;
+    font-size: .9em;
 }
 
-.videos li .hidden {
-    display: none;
+.videos li small {
+    font-size: .7em;
 }
 
 div.video {

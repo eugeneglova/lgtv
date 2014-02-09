@@ -48,6 +48,8 @@ define([
             this.listenTo(this.views.controls, 'pause', this.requestCallback('ui:player:pause'), this);
             this.listenTo(this.views.controls, 'forward', this.requestCallback('ui:player:forward'), this);
             this.listenTo(this.views.controls, 'clear-timeout', this.clearTimeout, this);
+
+            return true;
         },
 
         render: function() {

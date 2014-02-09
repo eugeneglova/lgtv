@@ -55,7 +55,42 @@ define([
             return true;
         },
 
+        listenToEvents: function() {
+            this.listenTo(this.views.videos, 'open', this.onVideoOpen, this);
+            this.listenTo(this.views.videos, 'play', this.onVideoPlay, this);
+
+            return true;
+        },
+
+        setVideoId: function(video_id) {
+            this.request('data:state:set', 'video-id', video_id);
+
+            return true;
+        },
+
+        onVideoOpen: function(video_id) {
+            this.setVideoId(video_id);
+
+            this.request('ui:video:open');
+
+            this.remove();
+
+            return true;
+        },
+
+        onVideoPlay: function(video_id) {
+            this.setVideoId(video_id);
+
+            this.request('ui:player:open');
+
+            this.remove();
+
+            return true;
+        },
+
         render: function() {
+            this.listenToEvents();
+
             this.views.videos.render();
 
             this.el.append(this.views.videos.$el);

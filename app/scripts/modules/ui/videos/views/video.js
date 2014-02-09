@@ -13,7 +13,8 @@ define([
         tagName: 'li',
 
         events: {
-            'click': 'onClick'
+            'click img':    'onClickImage',
+            'click a':      'onClickLink'
         },
 
         // Reference to parent view
@@ -33,10 +34,18 @@ define([
             return this;
         },
 
-        onClick: function(e) {
+        onClickImage: function(e) {
             e.preventDefault();
 
-            this.parent.trigger('video:play', this.model.id);
+            this.parent.trigger('open', this.model.id);
+
+            return true;
+        },
+
+        onClickLink: function(e) {
+            e.preventDefault();
+
+            this.parent.trigger('play', this.model.id);
 
             return true;
         }

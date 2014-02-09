@@ -5,7 +5,7 @@ class Video {
     public static function getList() {
         $videos = array();
 
-        $data = json_decode(file_get_contents('http://brb.to/video/films/?scrollload=1&view=list&start=0&length=15'));
+        $data = json_decode(file_get_contents('http://brb.to/video/films/?scrollload=1&view=list&start=0&length=14'));
 
         if (preg_match_all('/<a class="subject-link" href="\/video\/films\/(?P<id>[^-]+)[^"]+"[^>]*>\s*<img src="(?P<cover_image>[^"]+)"\s*alt=\'(?P<title>[^\']+)\'[^>]*>.*<span>(?P=title)<p>(?<original_title>[^>]+)<\/p><p>\((?<year>[^>]+)\)<\/p><\/span>/s', $data->content, $matches)) {
             foreach ($matches['id'] as $index => $id) {

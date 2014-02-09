@@ -11,8 +11,7 @@ define([
         namespace: 'ui:video',
 
         listeners: {
-            ':open':            'onOpen',
-            'ui:player:open':   'remove'
+            ':open': 'onOpen'
         },
 
         el: null,
@@ -62,7 +61,17 @@ define([
         },
 
         listenToEvents: function() {
-            this.listenTo(this.views.video, 'video:play', this.requestCallback('ui:player:open'), this);
+            this.listenTo(this.views.video, 'play', this.onVideoPlay, this);
+
+            return true;
+        },
+
+        onVideoPlay: function() {
+            this.request('ui:player:open');
+
+            this.remove();
+
+            return true;
         },
 
         render: function() {
