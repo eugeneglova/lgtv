@@ -43,10 +43,10 @@ define([
         },
 
         listenToEvents: function() {
-            this.listenTo(this.views.controls, 'rewind', this.requestCallback('ui:video:rewind'), this);
-            this.listenTo(this.views.controls, 'play', this.requestCallback('ui:video:play'), this);
-            this.listenTo(this.views.controls, 'pause', this.requestCallback('ui:video:pause'), this);
-            this.listenTo(this.views.controls, 'forward', this.requestCallback('ui:video:forward'), this);
+            this.listenTo(this.views.controls, 'rewind', this.requestCallback('ui:player:rewind'), this);
+            this.listenTo(this.views.controls, 'play', this.requestCallback('ui:player:play'), this);
+            this.listenTo(this.views.controls, 'pause', this.requestCallback('ui:player:pause'), this);
+            this.listenTo(this.views.controls, 'forward', this.requestCallback('ui:player:forward'), this);
             this.listenTo(this.views.controls, 'clear-timeout', this.clearTimeout, this);
         },
 
