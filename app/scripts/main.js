@@ -40,7 +40,7 @@ require([
 ], function (App, mediator) {
     window.app = new App();
     mediator.on('app:loader:ready', function() {
-        mediator.trigger('data:state:set', 'video-id', 'i109uoOHk3tDAFgJNvjxx6');
+        mediator.trigger('data:state:set', 'video-id', 'i3UtvRSPKkqynfWTqw1CX96');
         mediator.trigger('ui:video:open');
     })
 });

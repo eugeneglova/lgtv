@@ -1,25 +1,59 @@
 /*global define*/
 
 define([
-    'components/data-remote-collection/index',
-    './collections/remote-videos'
-], function (DataRemoteCollection, RemoteVideos) {
+    'backbone',
+    './collections/videos',
+    './models/video',
+    './models/video-url'
+], function (Backbone, VideoCollection, VideoModel, VideoUrlModel) {
     'use strict';
 
-    var Videos = DataRemoteCollection.extend({
+    var Videos = Backbone.Controller.extend({
 
         namespace: 'data:videos',
 
-        listeners: _.extend({}, DataRemoteCollection.prototype.listeners, {
-            ':getVideoById': 'onGetVideoById'
-        }),
+        listeners: {
+            ':get':             'onGet',
+            ':getVideoById':    'onGetVideoById',
+            ':getVideoUrlById': 'onGetVideoUrlById'
+        },
 
-        remote_collection_constructor: RemoteVideos,
+        initialize: function() {
+            this.announce('ready');
+
+            return this;
+        },
+
+        onGet: function(callback, context) {
+            var videos = new VideoCollection();
+
+            videos.fetch().then(function() {
+                callback.call(context, videos.clone());
+            });
+
+            return true;
+        },
 
         onGetVideoById: function(video_id, callback, context) {
-            var video = this.collections.remote.get(video_id);
+            var video = new VideoModel({
+                id: video_id
+            });
 
-            callback.call(context, video);
+            video.fetch().then(function() {
+                callback.call(context, video.clone());
+            });
+
+            return true;
+        },
+
+        onGetVideoUrlById: function(video_id, callback, context) {
+            var video_url = new VideoUrlModel({
+                id: video_id
+            });
+
+            video_url.fetch().then(function() {
+                callback.call(context, video_url.clone());
+            });
 
             return true;
         }

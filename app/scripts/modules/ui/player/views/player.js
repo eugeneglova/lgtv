@@ -12,8 +12,8 @@ define([
 
         template: PlayerTemplate,
 
-        // Reference to the video model
-        video: null,
+        // Reference to the video url model
+        video_url: null,
 
         interval: null,
 
@@ -27,8 +27,8 @@ define([
             return this;
         },
 
-        setVideo: function(video) {
-            this.video = video;
+        setVideoUrl: function(video_url) {
+            this.video_url = video_url;
 
             return true;
         },
@@ -70,7 +70,7 @@ define([
         },
 
         render: function() {
-            this.$el.html(this.template(this.video.toJSON()));
+            this.$el.html(this.template(this.video_url.toJSON()));
 
             return this;
         }

@@ -11,12 +11,11 @@ define([
         namespace: 'ui:player',
 
         listeners: {
-            ':open':                'onOpen',
-            ':rewind':              'onRewind',
-            ':play':                'onPlay',
-            ':pause':               'onPause',
-            ':forward':             'onForward',
-            'data:videos:ready':    'onDataVideosReady'
+            ':open':    'onOpen',
+            ':rewind':  'onRewind',
+            ':play':    'onPlay',
+            ':pause':   'onPause',
+            ':forward': 'onForward'
         },
 
         el: null,
@@ -26,9 +25,6 @@ define([
         is_rendered: null,
 
         video: null,
-
-        // Reference to the videos collection
-        videos: null,
 
         initialize: function() {
             this.el = $('body');
@@ -76,26 +72,15 @@ define([
             return !!this.is_rendered;
         },
 
-        onDataVideosReady: function() {
-            this.request('data:videos:get', this.onDataVideosGet, this);
-
-            return true;
-        },
-
-        onDataVideosGet: function(videos) {
-            this.videos = videos;
-
-            return true;
-        },
-
         onDataStateGetVideoId: function(video_id) {
-            this.video = this.videos.get(video_id);
+            this.request('data:videos:getVideoUrlById', video_id, this.onDataVideosGetVideoUrlById, this);
 
-            if (!this.video) return false;
+            return this;
+        },
 
-            this.views.player.setVideo(this.video);
+        onDataVideosGetVideoUrlById: function(video_url) {
+            this.views.player.setVideoUrl(video_url);
 
-            // this.player.fetch().then(this.render.bind(this));
             this.render();
 
             return true;
