@@ -7,28 +7,13 @@ class VideosController extends \BaseController {
      *
      * @return Response
      */
-    public function index()
+    public function index($id = null)
     {
-        //
-        return Response::json(array(
-            array('id' => 1, 'video_url' => 'http://brb.to/get/play/2dbgee4y2zx18_hd.mp4'),
-            array('id' => 2, 'video_url' => 'http://brb.to/get/play/2dbgefx2l5m0c_hd.mp4'),
-            array('id' => 3, 'video_url' => 'http://brb.to/get/play/2dbgemwrjcmfw_hd.mp4'),
-            array(
-                'id' => 'i109uoOHk3tDAFgJNvjxx6',
-                'title' => 'Дом войны',
-                'original_title' => 'Warhouse',
-                'description' => 'Моряк Эй Джи Бад просыпается в незнакомом доме, из которого нельзя выйти. Каждый день в одно и то же время появляется чудовище, которое пытается его убить. Не в силах найти объяснения происходящему, Бад обыскивает дом и находит дневник бывшего узника этой страшной тюрьмы',
-                'genre' => array('ужасы', 'триллер'),
-                'year' => '2013',
-                'country' => array('Великобритания'),
-                'director' => array('Люк Мэсси'),
-                'actors' => array('Джозеф Морган', 'Мэтт Райан', 'Уильям Тротон', 'Аль Уивер'),
-                'cover_image' => 'http://s3.dotua.org/fsua_items/cover/00/28/00/10/00280087.jpg',
-                'video_url' => 'http://brb.to/get/play/2dbgxbinfw4xo_hd.mp4'
-            ),
-        ), 200);
-
+        if (!$id) {
+            return Response::json(Video::getList(), 200);
+        } else {
+            return Response::json(Video::getVideoUrlById($id), 200);
+        }
     }
 
     /**
@@ -60,7 +45,7 @@ class VideosController extends \BaseController {
     public function show($id)
     {
         //
-        $row = Video::getById($id)->get()->first();
+        $row = Video::getById($id);
         return Response::json($row, $row ? 200 : 404);
     }
 
